@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porsche Executive Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{margin:0;background:#090909;color:white;font-family:Segoe UI,sans-serif;}
+.sidebar{position:fixed;width:280px;height:100vh;background:#111;padding:24px;border-right:1px solid #333;}
+.main{margin-left:280px;padding:30px;}
+.logo{font-size:34px;font-weight:700;letter-spacing:5px}
+.gold{color:#c5a46d}
+.filter{background:#1a1a1a;padding:14px;border-radius:14px;margin:12px 0;border:1px solid #2d2d2d}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:linear-gradient(135deg,#161616,#212121);border:1px solid #303030;border-radius:18px;padding:20px}
+.kv{font-size:34px;font-weight:bold;color:#c5a46d}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:20px}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.ins{background:#1f1f1f;border-left:4px solid #c5a46d;padding:12px;border-radius:8px;margin-bottom:10px}
+canvas{background:#141414;border-radius:14px;padding:10px}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<div class="logo">PORSCHE</div>
+<p class="gold">Premium Sales Intelligence</p>
+<h3>Filtros</h3>
+<div class="filter">Modelo Porsche</div>
+<div class="filter">Model Year</div>
+<div class="filter">City</div>
+<div class="filter">Pay Method</div>
+</div>
+
+<div class="main">
+<h1>Porsche Sales Analytics Dashboard</h1>
+
+<div class="kpis">
+<div class="card"><div>Receita Total</div><div class="kv">$12,827,800</div></div>
+<div class="card"><div>Veículos Vendidos</div><div class="kv">100</div></div>
+<div class="card"><div>Ticket Médio</div><div class="kv">$128,278</div></div>
+<div class="card"><div>Modelo Líder</div><div class="kv">Cayenne Coupe</div></div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Principais Modelos Vendidos por Cidade</h3>
+<canvas id="cityChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Insights de Negócio</h3>
+<div class="ins">A cidade com maior volume de vendas é <b>Atlanta</b>, com 3 vendas.</div>
+<div class="ins">O modelo mais vendido da base é <b>Cayenne Coupe</b>.</div>
+<div class="ins">O ticket médio da operação é superior a $128,278 por veículo.</div>
+<div class="ins">Utilize os filtros para identificar padrões de compra por cidade, ano-modelo e forma de pagamento.</div>
+</div>
+</div>
+
+<div class="bottom">
+<div class="card">
+<h3>Qual Ano Modelo Mais Saiu</h3>
+<canvas id="yearChart"></canvas>
+</div>
+<div class="card">
+<h3>Distribuição por Forma de Pagamento</h3>
+<canvas id="payChart"></canvas>
+</div>
+</div>
+</div>
+
+<script>
+new Chart(document.getElementById('cityChart'), {
+type:'bar',
+data:{
+labels:["Dallas - Taycan Turbo", "Oakland - 911 Targa 4", "Mesa - Macan T", "Las Vegas - 911 GT3", "Atlanta - 911 Carrera Cabriolet", "Albuquerque - 911 Turbo", "Anchorage - 911 Carrera Cabriolet", "Anaheim - Taycan GTS", "Austin - Panamera", "Bakersfield - Cayenne E-Hybrid"],
+datasets:[{label:'Vendas',data:[2, 2, 2, 2, 1, 1, 1, 1, 1, 1]}]
+}
+});
+
+new Chart(document.getElementById('yearChart'), {
+type:'line',
+data:{
+labels:["2020", "2021", "2022", "2023", "2024", "2025", "2026"],
+datasets:[{label:'Quantidade',data:[4, 12, 16, 19, 29, 16, 4]}]
+}
+});
+
+new Chart(document.getElementById('payChart'), {
+type:'doughnut',
+data:{
+labels:["ACH Payment", "Bank Transfer", "Cash", "Credit Card", "Crypto Payment", "Debit Card", "Financing", "Lease", "Wire Transfer"],
+datasets:[{data:[4, 10, 12, 15, 6, 4, 13, 10, 26]}]
+}
+});
+</script>
+</body>
+</html>
